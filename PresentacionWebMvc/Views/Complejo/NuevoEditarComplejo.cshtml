@@ -1,0 +1,131 @@
+﻿@model Dominio.ComplejoDeportivo
+
+@{
+    ViewBag.Title = "NuevoEditarComplejo";
+    Layout = "~/Views/MasterPage.cshtml";
+}
+<div class="row">
+    <div class="card-panel">
+
+        <div class="panel panel-primary" data-collapsed="0">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h2>Complejo Deportivo</h2>
+                </div>
+
+                <div class="panel-options">
+                    <a href="#sample-modal" data-toggle="modal" data-target="#sample-modal-dialog-1"
+                       class="bg"><i class="entypo-cog"></i></a>
+                    <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
+                    <a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>
+                    <a href="#" data-rel="close"><i class="entypo-cancel"></i></a>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    @using (Html.BeginForm("NuevoEditarComplejo", "Complejo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <div class="col-md-12">
+
+                            <div class="editor-label">
+                                @Html.HiddenFor(model => model.ComplejoDeportivoId)
+                            </div>
+                            <div class="col s12 m6">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.CodigoComplejo)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.CodigoComplejo, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.CodigoComplejo)
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.NombreComplejo)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.NombreComplejo, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.NombreComplejo)
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PresupuestoAproximado)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.PresupuestoAproximado, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.PresupuestoAproximado)
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Localizacion)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.Localizacion, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.Localizacion)
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.JefeOrganizacion)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.JefeOrganizacion.JefeOrganizacionId, (SelectList)ViewBag.ListaJefeOrganizacion, "Selecciona un Jefe", new { @class = "form-control browser-default", @required = "required" })
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.AreaTotalOcupada)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.AreaTotalOcupada, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.AreaTotalOcupada)
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.TipoComplejo)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.TipoComplejo.TipoComplejoId, (SelectList)ViewBag.ListaTipoComplejo, "Selecciona un Tipo Complejo", new { @class = "form-control browser-default", @required = "required" })
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.TipoDeporte)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.TipoDeporte.TipoDeporteId, (SelectList)ViewBag.ListaTipoDeporte, "Selecciona un Tipo Deporte", new { @class = "form-control browser-default", @required = "required" })
+                                </div>
+                            </div>
+
+                            <br />
+                            <br />
+                            <br />
+
+                        </div>
+
+                        <div class="col-md-12 pt-5">
+                            <div style="text-align:center">
+                                <input type="submit" class="btn btn-success" value="Guardar" />
+                                @Html.ActionLink("Cancelar", "MantenedorComplejo", null, htmlAttributes: new { @class = "btn btn-orange" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@model Dominio.JefeOrganizacion
+
+@{
+    ViewBag.Title = "NuevoEditarJefe";
+    Layout = "~/Views/MasterPage.cshtml";
+}
+<div class="row">
+    <div class="card-panel">
+
+        <div class="panel panel-primary" data-collapsed="0">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h2>Jefe Organizacion</h2>
+                </div>
+
+                <div class="panel-options">
+                    <a href="#sample-modal" data-toggle="modal" data-target="#sample-modal-dialog-1"
+                       class="bg"><i class="entypo-cog"></i></a>
+                    <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
+                    <a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>
+                    <a href="#" data-rel="close"><i class="entypo-cancel"></i></a>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    @using (Html.BeginForm("NuevoEditarJefe", "Complejo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <div class="col-md-12">
+
+                            <div class="editor-label">
+                                @Html.HiddenFor(model => model.JefeOrganizacionId)
+                            </div>
+                            <div class="col s12 m6">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.NombreJefe)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.NombreJefe, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.NombreJefe)
+                                </div>
+                            </div>
+                            
+                            <br />
+                            <div style="text-align:center">
+                                <input type="submit" class="btn btn-success" value="Guardar" />
+                                @Html.ActionLink("Cancelar", "MantenedorJefe", null, htmlAttributes: new { @class = "btn btn-orange" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

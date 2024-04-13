@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Dominio.JefeOrganizacion>
+
+@{
+    ViewBag.Title = "MantenedorJefe";
+    Layout = "~/Views/MasterPage.cshtml";
+}
+
+<h2>Mantenedor Jefe Organizacion</h2>
+<hr />
+<p>
+    @Html.ActionLink("Nuevo", "NuevoEditarJefe", new { JefeOrganizacionId = 0 }, htmlAttributes: new { @class = "btn btn-success" })
+</p>
+@if (ViewBag.mensaje != null)
+{
+    <div class="card-panel  green accent-4">
+        <span class="white-text">@ViewBag.mensaje</span>
+    </div>    
+}
+<div class="table-responsive">
+    <table id="data-table-simple" class="responsive-table display" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreJefe)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JefeOrganizacionId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreJefe)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "NuevoEditarJefe", new { JefeOrganizacionId = item.JefeOrganizacionId }, htmlAttributes: new { @class = "btn btn-info" })
+                        @Html.ActionLink("Eliminar", "EliminarJefe", new { JefeOrganizacionId = item.JefeOrganizacionId }, htmlAttributes: new { @class = "btn btn-info" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
